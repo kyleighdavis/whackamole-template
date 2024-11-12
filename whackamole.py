@@ -1,7 +1,7 @@
 import pygame
 
 #hello world
-
+# comment 2
 def main():
     try:
         pygame.init()
