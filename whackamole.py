@@ -29,14 +29,26 @@ def main():
             )
 
         screen.blit(mole_image, mole_image.get_rect(topleft=(0, 0)))
+        mole_pos = (0,0)
         running = True
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.pos == pygame.mouse.get_pos():
+                    x, y = pygame.mouse.get_pos()
+                    row = y//32
+                    col = x//32
+                    event_pos = (row, col)
+                    print(mole_pos)
+                    print(event_pos)
+                    if event_pos == mole_pos:
                         random_row = random.randrange(0,16)
+                        random_col = random.randrange(0,21)
+                        row_pos = random_row * 32
+                        col_pos = random_col * 32
+                        screen.blit(mole_image, mole_image.get_rect(topleft=(row_pos, col_pos)))
+                        mole_pos = (col_pos//32, row_pos//32)
             pygame.display.flip()
             clock.tick(60)
 
